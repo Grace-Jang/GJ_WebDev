@@ -1,0 +1,10 @@
+WIREFRAMING
+
+This article provided a clear understanding of how wireframing 
+serves as a foundational tool in web development. I particularly 
+liked how it emphasizes the importance of clarifying the problem 
+before jumping into designing. The reminder to collaborate early 
+and get feedback from people does tell me the best method to improve 
+and communication with different teams. The part about adjusting 
+wireframes for different audiences was helpful because it showed how 
+important it is to consider how different people understand wireframes.
