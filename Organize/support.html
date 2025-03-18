@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - HearTree</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .support-page {
+            padding-top: 80px;
+        }
+
+        .faq-section {
+            background-color: #8B1E1E;
+            color: #fff;
+            padding: 60px 40px;
+            min-height: 100vh;
+        }
+
+        .faq-section h1 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .accordion {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .accordion-item {
+            margin-bottom: 10px;
+        }
+
+        .accordion-header {
+            background-color: rgba(255, 107, 107, 0.8);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(255, 107, 107, 1);
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .accordion-content {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            display: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .accordion-content p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .more-faqs {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* responsive behavior */
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 40px 20px;
+            }
+            
+            .accordion {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="home.html">HearTree</a></div>
+        <nav>
+            <ul>
+                <li><a href="about.html">About Hearing</a></li>
+                <li><a href="solutions.html">Hearing Solutions</a></li>
+                <li><a href="support.html" class="active">Support</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <!-- support page -->
+    <main class="support-page">
+        <section class="faq-section">
+            <h1>Frequently Asked Questions <span class="green-dot"></span></h1>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>What is hearing loss?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Hearing loss refers to a decrease or loss of the ability to hear and understand sounds. It can range from mild to severe and may affect one or both ears. The main types of hearing loss include conductive hearing loss, sensorineural hearing loss, and mixed hearing loss. Hearing loss can be caused by various factors, such as aging, noise exposure, genetic factors, and illnesses.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Is Surgery dangerous?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Cochlear implant surgery is generally considered a safe procedure. Like any surgery, it carries some risks, but the likelihood of serious complications is very low. Before the surgery, doctors thoroughly assess the patient’s health and discuss any individual risk factors. Advances in medical technology and experienced surgeons have significantly improved the safety of the procedure. The recovery period varies for each individual, but most patients can quickly return to their daily activities.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>How sounds are?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>The experience of hearing sound for the first time through a cochlear implant varies from person to person. Initially, sounds may seem mechanical or robotic, and understanding speech can be challenging. However, as the brain adapts to these new auditory signals, the quality of sound improves over time. Most users experience significant improvements within weeks to months after activation. Many eventually develop the ability to understand conversations, enjoy music, and distinguish everyday environmental sounds.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Am I a candidate for a hearing implant?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Candidacy for a cochlear implant is determined by various factors. Generally, it is recommended for individuals with severe to profound sensorineural hearing loss who do not receive sufficient benefit from hearing aids. The evaluation process may include comprehensive hearing tests, medical assessments, imaging studies, and psychological evaluations. Factors such as age, duration of hearing loss, and language development are also considered. To determine if you are a candidate, it is important to consult with an audiologist or an otolaryngologist.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="more-faqs">More FAQs</a>
+        </section>
+    </main>
+
+    <!-- About HearTree and contact form section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About <span class="green-dot"></span></h2>
+            <p>HearTree is the world's leading hearing implant company, on a mission to help people with hearing loss experience the joy of sound.</p>
+            <h3>Find your<br>HearTree's Team!</h3>
+            <div class="world-map">
+                <img src="../Organize/img copy/map.png" alt="world map">
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- footer section -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">HeartTree</div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Audio Processors</a></li>
+                    <li><a href="#">Remote Controls</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About Hearing</h4>
+                <ul>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">How Hearing Works?</a></li>
+                    <li><a href="#">How to read the Audiogram?</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; Copyrights - 2025 HeartTree.</p>
+    </div>
+</footer>
+
+
+    <!-- javascript accordion  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // bring all accordin
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            // click in each headers
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // item
+                    const accordionItem = this.parentNode;
+                    
+                    // content
+                    const content = this.nextElementSibling;
+                    
+                    // active toggle 
+                    const isActive = this.classList.contains('active');
+                    
+                    // close when it opens, if it is close - open it 
+                    if (isActive) {
+                        this.classList.remove('active');
+                        content.style.display = 'none';
+                    } else {
+                        this.classList.add('active');
+                        content.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

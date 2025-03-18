@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-page {
+            padding-top: 80px;
+        }
+
+        .product-hero {
+            background-color: #fff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .product-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            color: #000;
+        }
+
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-tabs .tab {
+            padding: 10px 20px;
+            margin: 0 15px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #777;
+            border-bottom: 2px solid transparent;
+        }
+
+        .product-tabs .tab.active {
+            color: #000;
+            font-weight: bold;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px 40px 80px;
+        }
+
+        .product-item {
+            width: 300px;
+            height: 350px; 
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            transition: box-shadow 0.3s;
+        }
+
+        .product-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .first-product-image {
+            transform: scale(2);
+        }
+
+        .product-item img {
+            width: 200px;
+            height: 240px;
+            margin-bottom: 15px;
+            object-fit: contain; 
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s;
+        }
+
+        .product-item:hover img {
+            transform: scale(1.05); 
+        }
+
+        .product-item h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .product-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .logo a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* responsive behavior */
+        @media (max-width: 768px) {
+            .product-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-tabs .tab {
+                margin: 5px 0;
+            }
+
+            .product-item {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo"><a href="home.html">HearTree</a></div>
+        <nav>
+            <ul>
+                <li><a href="about.html">About Hearing</a></li>
+                <li><a href="solutions.html">Hearing Solutions</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main product page -->
+    <main class="product-page">
+        <section class="product-hero">
+            <h1>Our Products <span class="green-dot"></span></h1>
+            
+            <!-- product tab menu -->
+            <div class="product-tabs">
+                <div class="tab active" data-tab="audio-processors">Audio Processors</div>
+                <div class="tab" data-tab="remote-controls">Remote Controls</div>
+                <div class="tab" data-tab="accessories">Accessories</div>
+            </div>
+            
+            <!-- audio processors -->
+            <div id="audio-processors" class="tab-content active">
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="../Organize/img copy/Sonnet1.jpeg" alt="Sonnect 3 Gray" class="first-product-image">
+                        <h3>Sonnect 3</h3>
+                        <p>Cochlear Implant<br>Audio Processor</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="../Organize/img copy/Sonnet2.jpg" alt="Sonnect 3 White">
+                        <h3>OPUS 2</h3>
+                        <p>Cochlear Implant<br>Audio Processor</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="../Organize/img copy/Sonnet3.jpeg" alt="Sonnect 3 Black">
+                        <h3>Rondo 3</h3>
+                        <p>Cochlear Implant<br>Audio Processor</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- remote controllers-->
+            <div id="remote-controls" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="../Organize/img copy/fine_tuner.jpeg" alt="FineTuner Echo">
+                        <h3>FineTuner Echo</h3>
+                        <p>Remote Control for CI Audio Processors</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="../Organize/img copy/fine_tuner1.jpeg" alt="FineTuner">
+                        <h3>FineTuner</h3>
+                        <p>Remote Control for CI Audio Processors</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="../Organize/img copy/samba.jpeg" alt="SAMBA Control">
+                        <h3>SAMBA Remote Control</h3>
+                        <p>Rmote Control for SAMBA Audio Processor</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- accessories -->
+            <div id="accessories" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="../Organize/img copy/audiostream.jpeg" alt="Audiostream">
+                        <h3>AudioStream</h3>
+                        <p>Accessory for SONNET 2</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="../Organize/img copy/sambago.jpeg" alt="samba2go">
+                        <h3>SAMBA 2 GO</h3>
+                        <p>Accessory for SAMBA 2 Audio Processor</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="../Organize/img copy/audiolink.jpeg" alt="audiolink">
+                        <h3>AudioLink</h3>
+                        <p>Accessory for Controlling Volume</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- About HearTree and contact form section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About <span class="green-dot"></span></h2>
+            <p>HearTree is the world's leading hearing implant company, on a mission to help people with hearing loss experience the joy of sound.</p>
+            <h3>Find your<br>HearTree's Team!</h3>
+            <div class="world-map">
+                <img src="../Organize/img copy/map.png" alt="world map">
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Footer section -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">HeartTree</div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Audio Processors</a></li>
+                    <li><a href="#">Remote Controls</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About Hearing</h4>
+                <ul>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">How Hearing Works?</a></li>
+                    <li><a href="#">Types of Hearing Loss</a></li>
+                    <li><a href="#">How to read the Audiogram?</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; Copyrights - 2025 HearTree.</p>
+    </div>
+</footer>
+
+    <!-- javascript tabs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // call the tabs 
+            const tabs = document.querySelectorAll('.tab');
+            
+            // click 
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // remove active that is on tab  
+                    document.querySelector('.tab.active').classList.remove('active');
+                    document.querySelector('.tab-content.active').classList.remove('active');
+                    
+                    // active clicked on tab 
+                    this.classList.add('active');
+                    
+                    // connected tab active 
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

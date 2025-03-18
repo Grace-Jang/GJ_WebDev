@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearing Solutions - HearTree</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .solutions-page {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        .solutions-container {
+            padding: 50px;
+        }
+
+        .solutions-title {
+            font-size: 48px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .solutions-subtitle {
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .solutions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px; 
+            justify-content: center; 
+            margin-top: 30px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .solution-card {
+            width: 600px;
+            padding: 30px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+
+        .solution-card:nth-child(1) {
+            background-color: #e8f5e9; 
+        }
+
+        .solution-card:nth-child(2) {
+            background-color: #e3f2fd;
+        }
+
+        .solution-card:nth-child(3) {
+            background-color: #fff8e1;
+        }
+
+        .solution-card:nth-child(4) {
+            background-color: #fbe9e7; 
+        }
+        
+        .solution-card iframe {
+            width: 100%; 
+            height: 340px; 
+            margin: 15px 0 20px; 
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .solution-card h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .solution-card h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .solution-card img {
+            width: 500px;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+        }
+
+        .solution-card p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .discover-more-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(240, 240, 240, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .solution-card:hover .discover-more-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .discover-more-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #8B1E1E;
+            margin-bottom: 10px;
+        }
+
+        /* responsive behavior */
+        @media (max-width: 768px) {
+            .solutions-grid {
+                justify-content: center;
+            }
+            
+            .solution-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="home.html">HeartTree</a></div>
+        <nav>
+            <ul>
+                <li><a href="about.html">About Hearing</a></li>
+                <li><a href="solutions.html" class="active">Hearing Solutions</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- hearing solutions content -->
+    <main class="solutions-page">
+        <div class="solutions-container">
+            <h1 class="solutions-title">Which hearing solution could help me? <span class="green-dot"></span></h1>
+            <p class="solutions-subtitle">Find out more about your type of hearing loss and see which of solutions may be right for you!</p>
+            
+            <div class="solutions-grid">
+                <!-- first -->
+                <div class="solution-card">
+                    <h3>Conductive Hearing Loss</h3>
+                    <h4>Solutions</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/QE1AyH-uq9s?si=gsYb0DgGwc1R5lAC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>Conductive hearing loss happens when sound can’t reach the inner ear. This could be due to damage in the middle ear, or obstructions in the outer or middle ear like ear wax, fluid, infections, or tumors. Birth defects like atresia and microtia can also cause conductive hearing loss.
+
+                        There are several options to help treat conductive hearing loss, including middle ear implants, bone conduction implants, and bone-anchored hearing aids. There are also non-surgical options like bone conduction hearing aids.</p>
+                    
+                    <!-- mouse overlay-->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">VIBRANT SOUNDBRIDGE</div>
+                            <div class="discover-more-text">BONEBRIDGE</div>
+                            <div class="discover-more-text">ADHEAR</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- second -->
+                <div class="solution-card">
+                    <h3>Sensorineural Hearing Loss</h3>
+                    <h4>Solutions</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/EfzvT_WR0x4?si=Musp75ZhXaOJLFnq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>When the hair cells of the cochlea are missing or damaged, this is known as sensorineural hearing loss. This can be caused by genetics, or it can be a result of head trauma, exposure to loud noise, or something else in the environment. Sensorineural hearing loss is also a common part of the aging process.
+
+                        Sensorineural hearing loss has different treatment options depending on its severity, including cochlear implants, middle ear implants, and electric acoustic stimulation.</p>
+                    
+                    <!-- mouse overlay -->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">SYNCHRONY</div>
+                            <div class="discover-more-text">SYNCHRONY EAS</div>
+                            <div class="discover-more-text">VIBRANT SOUNDBRIDGE</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- third -->
+                <div class="solution-card">
+                    <h3>Mixed Hearing Loss</h3>
+                    <h4>Solutions</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/suPmtVNKpck?si=fxoHgDCAqExGU75j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>Mixed hearing loss is a combination of both sensorineural and conductive hearing loss. It results from problems in both the inner and the outer or middle ear.
+
+                        Options for treating mixed hearing loss include middle ear implants and bone conduction implants.</p>
+                    
+                    <!-- mouse overlay -->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">VIBRANT SOUNDBRIDGE</div>
+                            <div class="discover-more-text">BONEBRIDGE</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- fourth -->
+                <div class="solution-card">
+                    <h3>Neural Hearing Loss</h3>
+                    <h4>CI Systme</h4>
+                    <img src="../Organize/img copy/neural-hearing-loss.jpeg" alt="Neural Hearing Loss">
+                    <p>When the auditory nerve is damaged or missing, this is known as neural hearing loss. Hearing aids and cochlear implants cannot help because the nerve is not able to pass on sound information to the brain.
+
+                        In many cases, an Auditory Brainstem Implant (ABI) is an option for neural hearing loss.</p>
+                    
+                    <!-- mouse overlay -->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">SYNCHRONY ABI</div>
+                        </div>
+                    </a>
+                </div>
+    
+            </div>
+        </div>
+    </main>
+
+    <!-- About HearTree and contact form section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About <span class="green-dot"></span></h2>
+            <p>HearTree is the world's leading hearing implant company, on a mission to help people with hearing loss experience the joy of sound.</p>
+            <h3>Find your<br>HearTree's Team!</h3>
+            <div class="world-map">
+                <img src="../Organize/img copy/map.png" alt="world map">
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Footer section -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">HeartTree</div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Audio Processors</a></li>
+                    <li><a href="#">Remote Controls</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About Hearing</h4>
+                <ul>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">How Hearing Works?</a></li>
+                    <li><a href="#">Types of Hearing Loss</a></li>
+                    <li><a href="#">How to read the Audiogram?</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; Copyrights - 2025 HearTree.</p>
+    </div>
+</footer>
+    
+</body>
+</html>
