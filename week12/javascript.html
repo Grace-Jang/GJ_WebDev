@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HearTree: Visual Sound</title>
+  <style>
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #3f0d0d;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo a {
+      font-size: 26px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #222;
+    }
+
+    .green-dot {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: #4caf50;
+      border-radius: 50%;
+      margin-left: 6px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .hero-section {
+      background-color: #3f0d0d;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      z-index: 0;
+    }
+
+    .hero-section h1 {
+      color: white;
+      font-size: 64px;
+      font-weight: 800;
+      text-align: left;
+      margin: 0 0 20px 0;
+      line-height: 1.2;
+    }
+
+    .product-image img {
+      width: 400px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    /* hover: lightly enlarge the image */
+    .product-image img:hover {
+      transform: scale(1.04);
+    }
+
+    /* popup container: main blue box one*/
+    .popup-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #3a7393;
+      color: rgb(0, 0, 0);
+      padding: 35px 40px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      text-align: center;
+      width: 80vw;
+      max-width: 1200px;
+    }
+    
+    /* "X" close button on the popup */
+    .popup-close {
+      position: absolute;
+      top: -20px;
+      right: -5px;
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: rgb(0, 0, 0);
+      cursor: pointer;
+    }
+
+    /* inner content area of popup */
+    .popup-content {
+      background-color: #3a7393;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    /* canvas where particles appear */  
+    #visualizer {
+      width: 100%;
+      height: 300px;
+      background-color: #3a7393;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* dots that react to sound */
+    .particle {
+      position: absolute;
+      background-color: #c5f5ff;
+      border-radius: 200%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 0 0 8px #ddffdd99;
+    }
+
+     /* Start microphone button */
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #000000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #43a047;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- header with logo and nav -->
+  <header>
+    <div class="logo"><a href="#">HearTree<span class="green-dot"></span></a></div>
+    <nav>
+      <ul>
+        <li><a href="#">About Hearing</a></li>
+        <li><a href="#">Hearing Solutions</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- hero section with heading and image -->
+  <section class="hero-section">
+    <h1>Explore<br>New Hearing Aids <span class="green-dot"></span></h1>
+    <div class="product-image">
+      <img src="../Organize/img copy/hearingaid.png" alt="hearing aid" />
+    </div>
+
+    <!-- popup box with visualizer -->
+    <div class="popup-container" id="popup">
+      <!-- "x" close button -->
+      <button class="popup-close" onclick="document.getElementById('popup').style.display='none'">&times;</button>
+      <h2 style="margin-bottom: 16px; font-size: 22px; font-weight: 600;">Experience Visual Sound</h2>
+      <!-- popup content with visualizer and mic button -->
+      <div class="popup-content">
+        <div id="visualizer"></div>
+        <button id="startButton">Start Microphone</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- javaScript for microphone n visualizer -->
+  <script>
+    let audioContext, analyser, microphone, animationId;
+    const visualizer = document.getElementById('visualizer');
+    const startButton = document.getElementById('startButton');
+    const particles = [];
+    const maxParticles = 80;
+
+    // creating particles at random position with intensity based size
+    function createParticle(x, y, intensity) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const size = Math.max(4, Math.min(12, intensity / 10));
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      visualizer.appendChild(particle);
+      // setting movement direction and speed
+      const speedX = (Math.random() - 0.5) * 1.5;
+      const speedY = (Math.random() - 0.5) * 1.5;
+
+      particles.push({ element: particle, x, y, size, speedX, speedY, life: 60 });
+    }
+
+    // update all particles each frame
+    function updateParticles() {
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.life--;
+        p.element.style.left = `${p.x}px`;
+        p.element.style.top = `${p.y}px`;
+        p.element.style.opacity = p.life / 60;
+        // remove particle if its life ends
+        if (p.life <= 0) {
+          visualizer.removeChild(p.element);
+          particles.splice(i, 1);
+        }
+      }
+    }
+
+    // animate particles based on mic frequency data
+    function animateParticles() {
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength); //uint8array: store sound frequency data from 0 to 255
+      analyser.getByteFrequencyData(dataArray);
+
+      const avg = dataArray.reduce((a, b) => a + b) / bufferLength; //average volume of all the frequencies from the microphone input
+      const x = Math.random() * visualizer.clientWidth;
+      const y = Math.random() * visualizer.clientHeight; //generate random x and y positions for placing particles
+      // will create new particles if sound is strong enough
+      if (avg > 40 && particles.length < maxParticles) {
+        for (let i = 0; i < avg / 40; i++) {
+          createParticle(x, y, avg);
+        }
+      }
+
+      updateParticles();
+      animationId = requestAnimationFrame(animateParticles); //run the function again on the next animation frame
+    }
+
+    // request mic access and start visualizing !! 
+    async function startMic() {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      microphone = audioContext.createMediaStreamSource(stream);
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      microphone.connect(analyser);
+      animateParticles();
+      startButton.disabled = true; //prevent clicking again
+    }
+
+    // start mic when button is clicked
+    startButton.addEventListener('click', startMic);
+  </script>
+</body>
+</html>
