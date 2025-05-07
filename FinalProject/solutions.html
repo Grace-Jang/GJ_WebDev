@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearing Solutions - HearTree</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* base styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #4b1212;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f26d63;
+        }
+
+        nav ul li a.active {
+            color: #f26d63;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .green-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
+        .solutions-page {
+            padding: 0;
+            min-height: 100vh;
+            background-color: #681919;
+            color: #fff;
+        }
+
+        .solutions-container {
+            padding: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solutions-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .solutions-subtitle {
+            font-size: 18px;
+            margin-bottom: 50px;
+            color: #f5f5f5;
+        }
+
+        .solutions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px; 
+            justify-content: center; 
+            margin-top: 30px;
+        }
+
+        .solution-card {
+            width: 600px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .solution-card:nth-child(1) {
+            background-color: #e8f5e9; 
+        }
+
+        .solution-card:nth-child(2) {
+            background-color: #e3f2fd;
+        }
+
+        .solution-card:nth-child(3) {
+            background-color: #fff8e1;
+        }
+
+        .solution-card:nth-child(4) {
+            background-color: #fbe9e7; 
+        }
+        
+        .solution-card iframe {
+            width: 100%; 
+            height: 340px; 
+            margin: 15px 0 20px; 
+            border-radius: 8px;
+            border: none;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .solution-card h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .solution-card h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .solution-card img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border-radius: 8px;
+        }
+
+        .solution-card p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .discover-more-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(240, 240, 240, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .solution-card:hover .discover-more-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .discover-more-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #8B1E1E;
+            margin-bottom: 10px;
+        }
+
+        /* about Section */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            gap: 40px;
+            background-color: #471010;
+            color: #ffffff;
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-content h3 {
+            font-size: 24px;
+            margin: 30px 0 20px;
+        }
+
+        .about-content iframe {
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        /* contact form */
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #3a7393;
+            padding: 30px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .contact-form h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #f26d63;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #922e21;
+        }
+
+        /* footer */
+        footer {
+            background-color: #370808;
+            color: white;
+            padding: 40px 5% 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #313131;
+            text-align: center;
+        }
+
+        /* mobile styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            .solutions-container {
+                padding: 20px;
+            }
+            
+            .solutions-title {
+                font-size: 28px;
+            }
+            
+            .solutions-grid {
+                justify-content: center;
+                gap: 30px;
+            }
+            
+            .solution-card {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+            }
+            
+            .solution-card iframe {
+                height: 200px;
+            }
+            
+            .discover-more-text {
+                font-size: 24px;
+            }
+
+            .about-section {
+                flex-direction: column;
+                padding: 40px 5%;
+            }
+
+            .about-content, .contact-form {
+                width: 100%;
+            }
+
+            .about-content iframe {
+                height: 250px !important;
+                width: 100% !important;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .footer-column {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">HearTree</a></div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="about.html">About Hearing</a></li>
+                <li><a href="solutions.html" class="active">Hearing Solutions</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- hearing solutions content -->
+    <main class="solutions-page">
+        <div class="solutions-container">
+            <h1 class="solutions-title">Which hearing solution could help me? <span class="green-dot"></span></h1>
+            <p class="solutions-subtitle">Find out more about your type of hearing loss and see which of solutions may be right for you!</p>
+            
+            <div class="solutions-grid">
+                <!-- first -->
+                <div class="solution-card">
+                    <h3>Conductive Hearing Loss</h3>
+                    <h4>Solutions</h4>
+                    <iframe src="https://www.youtube.com/embed/QE1AyH-uq9s?si=gsYb0DgGwc1R5lAC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>Conductive hearing loss happens when sound can't reach the inner ear. This could be due to damage in the middle ear, or obstructions in the outer or middle ear like ear wax, fluid, infections, or tumors. Birth defects like atresia and microtia can also cause conductive hearing loss.
+
+                        There are several options to help treat conductive hearing loss, including middle ear implants, bone conduction implants, and bone-anchored hearing aids. There are also non-surgical options like bone conduction hearing aids.</p>
+                    
+                    <!-- mouse overlay-->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">VIBRANT SOUNDBRIDGE</div>
+                            <div class="discover-more-text">BONEBRIDGE</div>
+                            <div class="discover-more-text">ADHEAR</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- second -->
+                <div class="solution-card">
+                    <h3>Sensorineural Hearing Loss</h3>
+                    <h4>Solutions</h4>
+                    <iframe src="https://www.youtube.com/embed/EfzvT_WR0x4?si=Musp75ZhXaOJLFnq" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>When the hair cells of the cochlea are missing or damaged, this is known as sensorineural hearing loss. This can be caused by genetics, or it can be a result of head trauma, exposure to loud noise, or something else in the environment. Sensorineural hearing loss is also a common part of the aging process.
+
+                        Sensorineural hearing loss has different treatment options depending on its severity, including cochlear implants, middle ear implants, and electric acoustic stimulation.</p>
+                    
+                    <!-- mouse overlay -->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">SYNCHRONY</div>
+                            <div class="discover-more-text">SYNCHRONY EAS</div>
+                            <div class="discover-more-text">VIBRANT SOUNDBRIDGE</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- third -->
+                <div class="solution-card">
+                    <h3>Mixed Hearing Loss</h3>
+                    <h4>Solutions</h4>
+                    <iframe src="https://www.youtube.com/embed/suPmtVNKpck?si=fxoHgDCAqExGU75j" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>Mixed hearing loss is a combination of both sensorineural and conductive hearing loss. It results from problems in both the inner and the outer or middle ear.
+
+                        Options for treating mixed hearing loss include middle ear implants and bone conduction implants.</p>
+                    
+                    <!-- mouse overlay -->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">VIBRANT SOUNDBRIDGE</div>
+                            <div class="discover-more-text">BONEBRIDGE</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- fourth -->
+                <div class="solution-card">
+                    <h3>Neural Hearing Loss</h3>
+                    <h4>CI System</h4>
+                    <img src="../Organize/img copy/neural-hearing-loss.jpeg" alt="Neural Hearing Loss">
+                    <p>When the auditory nerve is damaged or missing, this is known as neural hearing loss. Hearing aids and cochlear implants cannot help because the nerve is not able to pass on sound information to the brain.
+
+                        In many cases, an Auditory Brainstem Implant (ABI) is an option for neural hearing loss.</p>
+                    
+                    <!-- mouse overlay -->
+                    <a href="solution-detail.html">
+                        <div class="discover-more-overlay">
+                            <div class="discover-more-text">SYNCHRONY ABI</div>
+                        </div>
+                    </a>
+                </div>
+    
+            </div>
+        </div>
+    </main>
+
+    <!-- About HearTree and contact form section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About <span class="green-dot"></span></h2>
+            <p>HearTree is the world's leading hearing implant company, on a mission to help people with hearing loss experience the joy of sound.</p>
+            <h3>Find your<br>HearTree's Team!</h3>
+            
+            <div class="world-map">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6050.2581417075935!2d-73.99002648801647!3d40.693154938649144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a4bc1eb7b11%3A0xe33785c6b51a38f1!2s370%20Jay%20St%2C%20Brooklyn%2C%20NY%2011201!5e0!3m2!1sen!2sus!4v1746120700134!5m2!1sen!2sus" 
+                  width="410" 
+                  height="300" 
+                  style="border:0; border-radius: 8px; display: block; margin: 0 auto;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form id="contactForm" onsubmit="return validateForm(event)">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g. John">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g. Park">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. example@gmail.com">
+                </div>
+  
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment" placeholder="Write your message here..."></textarea>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap;">
+                  <p id="formMessage" style="display: none; margin: 0; font-weight: bold; color: white; text-align: left; max-width: 70%;">Thank you!<br>We'll get back to you soon.</p>
+                  <button type="submit" class="submit-button" style="flex-shrink: 0; width: 120px; height: 50px;">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+<!-- footer section -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">HearTree</div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="product.html">Audio Processors</a></li>
+                    <li><a href="product.html">Remote Controls</a></li>
+                    <li><a href="product.html">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About Hearing</h4>
+                <ul>
+                    <li><a href="about.html">Introduction</a></li>
+                    <li><a href="about.html">How Hearing Works?</a></li>
+                    <li><a href="about.html">Types of Hearing Loss</a></li>
+                    <li><a href="about.html">How to read the Audiogram?</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Hearing Solutions</h4>
+                <ul>
+                    <li><a href="solutions.html">Which hearing solution could help me?</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="support.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; Copyrights - 2025 HearTree.</p>
+    </div>
+</footer>
+
+<!-- javaScript for mobile menu and form validation -->
+<script>
+    // mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    
+    menuToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+    });
+
+    // form validation
+    function validateForm(event) {
+        event.preventDefault();
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const comment = document.getElementById("comment").value.trim();
+        const message = document.getElementById("formMessage");
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!firstName || !lastName || !email || !comment) {
+            message.style.color = "red";
+            message.textContent = "Please fill in all fields.";
+            message.style.display = "block";
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            message.style.color = "red";
+            message.textContent = "Please enter a valid email address.";
+            message.style.display = "block";
+            return false;
+        }
+
+        message.innerHTML = "Thank you!<br>We'll get back to you soon.";
+        message.style.display = "block";
+        message.style.color = "white";
+        document.getElementById("contactForm").reset();
+        return false;
+    }
+</script>
+    
+</body>
+</html>

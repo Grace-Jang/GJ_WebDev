@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Products</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* base styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #4b1212; 
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #f26d63;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    
+    .product-page {
+      padding-top: 30px;
+    }
+    
+    .product-hero {
+      background-color: #fff;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .product-hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      color: #000;
+    }
+    
+    .green-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: #4CAF50;
+      border-radius: 50%;
+      margin-left: 5px;
+    }
+    
+    .product-filters {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .product-filters select,
+    .product-filters input {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      min-width: 150px;
+    }
+    
+    .product-tabs {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .product-tabs .tab {
+      padding: 10px 20px;
+      margin: 0 15px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #777;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .product-tabs .tab.active {
+      color: #000;
+      font-weight: bold;
+      border-bottom: 2px solid #4CAF50;
+    }
+    
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 40px 80px;
+    }
+    
+    .product-item {
+      width: 300px;
+      height: 350px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      transition: box-shadow 0.3s;
+    }
+    
+    .product-item:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .first-product-image {
+      transform: scale(2);
+    }
+    
+    .product-item img {
+      width: 200px;
+      height: 240px;
+      margin-bottom: 15px;
+      object-fit: contain;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: transform 0.3s;
+    }
+    
+    .product-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .product-item h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    
+    .product-item p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+
+    /* about section */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 60px 5%;
+      gap: 40px;
+      background-color: #4d1010; 
+      color: #ffffff;
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .about-content h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .about-content h3 {
+      font-size: 24px;
+      margin: 30px 0 20px;
+    }
+
+    .world-map {
+      width: 100%;
+      max-width: 410px;
+      margin: 0 auto;
+    }
+
+    .about-content iframe {
+      border-radius: 8px;
+      max-width: 100%;
+      width: 100%;
+      display: block;
+    }
+
+    /* contact form */
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      background-color: #3a7393;
+      padding: 30px;
+      border-radius: 8px;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    .contact-form h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .submit-button {
+      background-color: #f26d63;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
+      width: 120px;
+      height: 50px;
+    }
+
+    .submit-button:hover {
+      background-color: #922e21;
+    }
+
+    #formMessage {
+      display: none;
+      margin: 0;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      max-width: 70%;
+    }
+
+    /* footer */
+    footer {
+      background-color: #370808;
+      color: white;
+      padding: 40px 5% 20px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+
+    .footer-column h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #313131;
+      text-align: center;
+    }
+
+    /* mobile styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+
+      nav.active {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 20px;
+      }
+
+      .about-section {
+        flex-direction: column;
+        padding: 30px 20px;
+      }
+
+      .about-content, .contact-form {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .world-map {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .about-content iframe {
+        height: 200px !important;
+        width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .contact-form {
+        padding: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      .form-group textarea {
+        min-height: 100px;
+      }
+
+      .form-submit-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #formMessage {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+
+      .submit-button {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-links {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .footer-column {
+        width: 100%;
+        text-align: center;
+      }
+
+      .product-hero h1 {
+        font-size: 32px;
+      }
+
+      .product-filters {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-tabs {
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .product-tabs .tab {
+        margin: 0 5px;
+        padding: 8px 10px;
+        font-size: 16px;
+      }
+
+      .product-grid {
+        padding: 20px 10px 40px;
+      }
+
+      .product-item {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><a href="index.html">HearTree</a></div>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <nav id="mainNav">
+    <ul>
+      <li><a href="about.html">About Hearing</a></li>
+      <li><a href="solutions.html">Hearing Solutions</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="product-page">
+  <section class="product-hero">
+    <h1>Our Products <span class="green-dot"></span></h1>
+    <div class="product-filters">
+      <select id="colorFilter">
+        <option value="all">All Colors</option>
+        <option value="gray">Gray</option>
+        <option value="white">White</option>
+        <option value="black">Black</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="Search by name..." />
+    </div>
+
+    <div class="product-tabs">
+      <div class="tab active" data-tab="audio-processors">Audio Processors</div>
+      <div class="tab" data-tab="remote-controls">Remote Controls</div>
+      <div class="tab" data-tab="accessories">Accessories</div>
+    </div>
+
+    <div id="audio-processors" class="tab-content active">
+      <div class="product-grid">
+        <div class="product-item" data-color="gray" data-name="Sonnect 3">
+          <img src="./img copy /Sonnet1.jpeg" alt="Sonnect 3 Gray" class="first-product-image" />
+          <h3>Sonnect 3</h3>
+          <p>Cochlear Implant<br />Audio Processor</p>
+        </div>
+        <div class="product-item" data-color="white" data-name="OPUS 2">
+          <img src="./img copy /Sonnet2.jpg" alt="OPUS 2" />
+          <h3>OPUS 2</h3>
+          <p>Cochlear Implant<br />Audio Processor</p>
+        </div>
+        <div class="product-item" data-color="black" data-name="Rondo 3">
+          <img src="./img copy /Sonnet3.jpeg" alt="Rondo 3" />
+          <h3>Rondo 3</h3>
+          <p>Cochlear Implant<br />Audio Processor</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="remote-controls" class="tab-content">
+      <div class="product-grid">
+        <div class="product-item" data-color="black" data-name="FineTuner Echo">
+          <img src="./img copy /fine_tuner.jpeg" alt="FineTuner Echo" />
+          <h3>FineTuner Echo</h3>
+          <p>Remote Control for CI Audio Processors</p>
+        </div>
+        <div class="product-item" data-color="gray" data-name="FineTuner">
+          <img src="./img copy /fine_tuner1.jpeg" alt="FineTuner" />
+          <h3>FineTuner</h3>
+          <p>Remote Control for CI Audio Processors</p>
+        </div>
+        <div class="product-item" data-color="black" data-name="SAMBA Remote Control">
+          <img src="./img copy /samba.jpeg" alt="SAMBA Control" />
+          <h3>SAMBA Remote Control</h3>
+          <p>Remote Control for SAMBA Audio Processor</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="accessories" class="tab-content">
+      <div class="product-grid">
+        <div class="product-item" data-color="gray" data-name="AudioStream">
+          <img src="./img copy /audiostream.jpeg" alt="Audiostream" />
+          <h3>AudioStream</h3>
+          <p>Accessory for SONNET 2</p>
+        </div>
+        <div class="product-item" data-color="black" data-name="SAMBA 2 GO">
+          <img src="./img copy /sambago.jpeg" alt="samba2go" />
+          <h3>SAMBA 2 GO</h3>
+          <p>Accessory for SAMBA 2 Audio Processor</p>
+        </div>
+        <div class="product-item" data-color="black" data-name="AudioLink">
+          <img src="./img copy /audiolink.jpeg" alt="audiolink" />
+          <h3>AudioLink</h3>
+          <p>Accessory for Controlling Volume</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About HearTree and contact form section -->
+  <section class="about-section">
+    <div class="about-content">
+      <h2>About <span class="green-dot"></span></h2>
+      <p>HearTree is the world's leading hearing implant company, on a mission to help people with hearing loss experience the joy of sound.</p>
+      <h3>Find your<br>HearTree's Team!</h3>
+      <div class="world-map">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6050.2581417075935!2d-73.99002648801647!3d40.693154938649144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a4bc1eb7b11%3A0xe33785c6b51a38f1!2s370%20Jay%20St%2C%20Brooklyn%2C%20NY%2011201!5e0!3m2!1sen!2sus!4v1746120700134!5m2!1sen!2sus" 
+          width="100%" 
+          height="300" 
+          style="border:0; border-radius: 8px; display: block; margin: 0 auto;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form id="contactForm" onsubmit="return validateForm(event)">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="e.g. John">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="e.g. Park">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="e.g. example@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <textarea id="comment" name="comment" placeholder="Write your message here..."></textarea>
+        </div>
+        
+        <div class="form-submit-container">
+          <p id="formMessage">Thank you!<br>We'll get back to you soon.</p>
+          <button type="submit" class="submit-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">HearTree</div>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="product.html">Audio Processors</a></li>
+          <li><a href="product.html">Remote Controls</a></li>
+          <li><a href="product.html">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>About Hearing</h4>
+        <ul>
+          <li><a href="about.html">Introduction</a></li>
+          <li><a href="about.html">How Hearing Works?</a></li>
+          <li><a href="about.html">Types of Hearing Loss</a></li>
+          <li><a href="about.html">How to read the Audiogram?</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Hearing Solutions</h4>
+        <ul>
+            <li><a href="solutions.html">Which hearing solution could help me?</a></li>
+        </ul>
+    </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="support.html">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; Copyrights - 2025 HearTree.</p>
+  </div>
+</footer>
+
+<script>
+  // mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  
+  menuToggle.addEventListener('click', function() {
+    mainNav.classList.toggle('active');
+  });
+
+  // form validation
+  function validateForm(event) {
+    event.preventDefault();
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+    const message = document.getElementById("formMessage");
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!firstName || !lastName || !email || !comment) {
+      message.style.color = "red";
+      message.textContent = "Please fill in all fields.";
+      message.style.display = "block";
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      message.style.color = "red";
+      message.textContent = "Please enter a valid email address.";
+      message.style.display = "block";
+      return false;
+    }
+
+    message.innerHTML = "Thank you!<br>We'll get back to you soon.";
+    message.style.display = "block";
+    message.style.color = "white";
+    document.getElementById("contactForm").reset();
+    return false;
+  }
+
+  // products filtering
+  document.addEventListener("DOMContentLoaded", function () {
+    // tab switching
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        document.querySelector(".tab.active").classList.remove("active");
+        document.querySelector(".tab-content.active").classList.remove("active");  // hide current tab content
+        this.classList.add("active");
+        const tabId = this.getAttribute("data-tab"); // get the target content ID
+        document.getElementById(tabId).classList.add("active");
+        filterProducts();
+      });
+    });
+
+    //color filter and keyword search 
+    document.getElementById("colorFilter").addEventListener("change", filterProducts);
+    document.getElementById("searchInput").addEventListener("input", filterProducts);
+
+    function filterProducts() {
+      const color = document.getElementById("colorFilter").value.toLowerCase();
+      const keyword = document.getElementById("searchInput").value.toLowerCase();
+      const activeTab = document.querySelector(".tab-content.active");
+
+      activeTab.querySelectorAll(".product-item").forEach((item) => {
+        const itemColor = item.getAttribute("data-color");
+        const itemName = item.getAttribute("data-name").toLowerCase();
+        const matchColor = color === "all" || itemColor === color;
+        const matchName = itemName.includes(keyword);
+        item.style.display = matchColor && matchName ? "flex" : "none"; //show or hide
+      });
+    }
+  });
+</script>
+</body>
+</html>
+

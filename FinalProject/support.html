@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - HearTree</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* base styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #4b1212;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f26d63;
+        }
+
+        nav ul li a.active {
+            color: #f26d63;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .green-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
+        .support-page {
+            padding-top: 0;
+            background-color: #7a1e1e;
+        }
+
+        .faq-section {
+            background-color: #681919;
+            color: #fff;
+            padding: 60px 40px;
+            min-height: 100vh;
+        }
+
+        .faq-section h1 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .accordion {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background-color: rgba(255, 107, 107, 0.8);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(255, 107, 107, 1);
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .accordion-content {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            display: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .accordion-content p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .more-faqs {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .troubleshoot-section, .support-call {
+            margin-top: 60px;
+            padding: 30px;
+            background-color: #4d0e0e;
+            color: white;
+            border-radius: 20px;
+            max-width: 800px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .troubleshoot-section h2, .support-call h2 {
+            font-size: 26px;
+            margin-bottom: 16px;
+        }
+
+        .button-group button {
+            margin: 10px;
+            padding: 14px 20px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .button-group button:hover {
+            background-color: #4CAF50;
+        }
+
+        .support-result {
+            margin-top: 20px;
+            font-size: 16px;
+            background: #eee;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .support-call input, .support-call select {
+            margin: 10px 0;
+            padding: 14px;
+            width: 90%;
+            max-width: 400px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .support-call button {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .support-call button:hover {
+            background-color: #4CAF50;
+        }
+
+        .confirmation-message {
+            margin-top: 20px;
+            color: #bfffc2;
+            font-size: 16px;
+        }
+
+        /* about section */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            gap: 40px;
+            background-color: #4f1212;
+            color: #ffffff;
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-content h3 {
+            font-size: 24px;
+            margin: 30px 0 20px;
+        }
+
+        .about-content iframe {
+            border-radius: 8px;
+            max-width: 100%;
+
+        }
+
+        /* contact form */
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #3a7393;
+            padding: 30px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .contact-form h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #f26d63;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #922e21;
+        }
+
+        /* footer */
+        footer {
+            background-color: #370808;
+            color: white;
+            padding: 40px 5% 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #313131;
+            text-align: center;
+        }
+
+        /* mobile style */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            .faq-section {
+                padding: 40px 20px;
+            }
+            
+            .accordion {
+                max-width: 100%;
+            }
+
+            .about-section {
+                flex-direction: column;
+                padding: 40px 5%;
+            }
+
+            .about-content, .contact-form {
+                width: 100%;
+            }
+
+            .about-content iframe {
+                height: 250px !important;
+                width: 100% !important;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .footer-column {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">HearTree</a></div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="about.html">About Hearing</a></li>
+                <li><a href="solutions.html">Hearing Solutions</a></li>
+                <li><a href="support.html" class="active">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- support page -->
+    <main class="support-page">
+        <section class="faq-section">
+            <h1>Frequently Asked Questions <span class="green-dot"></span></h1>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>What is hearing loss?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Hearing loss refers to a decrease or loss of the ability to hear and understand sounds. It can range from mild to severe and may affect one or both ears. The main types of hearing loss include conductive hearing loss, sensorineural hearing loss, and mixed hearing loss. Hearing loss can be caused by various factors, such as aging, noise exposure, genetic factors, and illnesses.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Is Surgery dangerous?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Cochlear implant surgery is generally considered a safe procedure. Like any surgery, it carries some risks, but the likelihood of serious complications is very low. Before the surgery, doctors thoroughly assess the patient's health and discuss any individual risk factors. Advances in medical technology and experienced surgeons have significantly improved the safety of the procedure. The recovery period varies for each individual, but most patients can quickly return to their daily activities.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>How sounds are?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>The experience of hearing sound for the first time through a cochlear implant varies from person to person. Initially, sounds may seem mechanical or robotic, and understanding speech can be challenging. However, as the brain adapts to these new auditory signals, the quality of sound improves over time. Most users experience significant improvements within weeks to months after activation. Many eventually develop the ability to understand conversations, enjoy music, and distinguish everyday environmental sounds.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Am I a candidate for a hearing implant?</h3>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Candidacy for a cochlear implant is determined by various factors. Generally, it is recommended for individuals with severe to profound sensorineural hearing loss who do not receive sufficient benefit from hearing aids. The evaluation process may include comprehensive hearing tests, medical assessments, imaging studies, and psychological evaluations. Factors such as age, duration of hearing loss, and language development are also considered. To determine if you are a candidate, it is important to consult with an audiologist or an otolaryngologist.</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <!-- troubleshooting assistant -->
+            <div class="troubleshoot-section">
+                <h2>🛠️ Troubleshooting Assistant</h2>
+                <p>Select a common issue to see suggestions:</p>
+                <div class="button-group">
+                    <button onclick="showSupport('noSound')">No sound from device</button>
+                    <button onclick="showSupport('micNotWorking')">Microphone not working</button>
+                    <button onclick="showSupport('bluetooth')">Bluetooth not connecting</button>
+                </div>
+                <div id="supportResult" class="support-result"></div>
+            </div>
+
+            <!-- schedule a support Call -->
+            <div class="support-call">
+                <h2>📞 Schedule a Support Call</h2>
+                <form onsubmit="submitSupport(event)">
+                    <input type="text" id="username" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <select id="timeSlot" required>
+                        <option value="">Preferred Time Slot</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Evening">Evening</option>
+                    </select>
+                    <button type="submit">Request Call</button>
+                </form>
+                <p id="callConfirmation" class="confirmation-message"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- About HearTree and contact form section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About <span class="green-dot"></span></h2>
+            <p>HearTree is the world's leading hearing implant company, on a mission to help people with hearing loss experience the joy of sound.</p>
+            <h3>Find your<br>HearTree's Team!</h3>
+            
+            <div class="world-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6050.2581417075935!2d-73.99002648801647!3d40.693154938649144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a4bc1eb7b11%3A0xe33785c6b51a38f1!2s370%20Jay%20St%2C%20Brooklyn%2C%20NY%2011201!5e0!3m2!1sen!2sus!4v1746120700134!5m2!1sen!2sus" 
+                    width="410" 
+                    height="300" 
+                    style="border:0; border-radius: 8px; display: block; margin: 0 auto;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-cross-origin">
+                </iframe>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form id="contactForm" onsubmit="return validateForm(event)">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g. John">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g. Park">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment" placeholder="Write your message here..."></textarea>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap;">
+                    <p id="formMessage" style="display: none; margin: 0; font-weight: bold; color: white; text-align: left; max-width: 70%;">Thank you!<br>We'll get back to you soon.</p>
+                    <button type="submit" class="submit-button" style="flex-shrink: 0; width: 120px; height: 50px;">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- footer section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">HearTree</div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="product.html">Audio Processors</a></li>
+                        <li><a href="product.html">Remote Controls</a></li>
+                        <li><a href="product.html">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About Hearing</h4>
+                    <ul>
+                        <li><a href="about.html">Introduction</a></li>
+                        <li><a href="about.html">How Hearing Works?</a></li>
+                        <li><a href="about.html">How to read the Audiogram?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Hearing Solutions</h4>
+                    <ul>
+                        <li><a href="solutions.html">Which hearing solution could help me?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Copyrights - 2025 HearTree.</p>
+        </div>
+    </footer>
+
+    <!-- javaScript -->
+    <script>
+        // mobile - menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+        });
+
+        // FAQ 
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // toggle active class
+                    this.classList.toggle('active');
+                    
+                    // get content element
+                    const content = this.nextElementSibling;
+                    
+                    // toggle 
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                    } else {
+                        content.style.display = 'block';
+                    }
+                });
+            });
+
+            // apply block to first item 
+            const firstAccordionItem = document.querySelector('.accordion-item:first-child .accordion-header');
+            if (firstAccordionItem) {
+                firstAccordionItem.click();
+            }
+        });
+
+        // troubleshooting assistant
+        function showSupport(issue) {
+            let message = '';
+            switch (issue) {
+                case 'noSound':
+                    message = "🔊 Please check if your device is powered on and volume is up. Restart if needed.";
+                    break;
+                case 'micNotWorking':
+                    message = "🎤 Make sure your microphone is enabled and has permission from browser settings.";
+                    break;
+                case 'bluetooth':
+                    message = "📦 Try turning Bluetooth off and back on. Re-pair your device if needed.";
+                    break;
+                default:
+                    message = "Please select an issue.";
+            }
+            document.getElementById('supportResult').innerText = message;
+        }
+
+        // schedule support form
+        function submitSupport(event) {
+            event.preventDefault();
+            const name = document.getElementById('username').value;
+            const time = document.getElementById('timeSlot').value;
+            document.getElementById('callConfirmation').innerText =
+                `✅ Thanks ${name}! We'll contact you in the ${time.toLowerCase()}.`;
+        }
+
+        // contact form validation
+        function validateForm(event) {
+            event.preventDefault();
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const comment = document.getElementById("comment").value.trim();
+            const message = document.getElementById("formMessage");
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!firstName || !lastName || !email || !comment) {
+                message.style.color = "red";
+                message.textContent = "Please fill in all fields.";
+                message.style.display = "block";
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                message.style.color = "red";
+                message.textContent = "Please enter a valid email address.";
+                message.style.display = "block";
+                return false;
+            }
+
+            message.innerHTML = "Thank you!<br>We'll get back to you soon.";
+            message.style.display = "block";
+            message.style.color = "white";
+            document.getElementById("contactForm").reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
